@@ -33,7 +33,8 @@ $('form').submit(function(){
   var elementPos = stockData.map(function(x) { return x.name; }).indexOf(symbol);
   if (elementPos !== -1) {
     $('#errors').append('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + symbol + ' is already displayed. Try adding a different stock, or removing this one first.</div>');
-  } else {
+    return false;
+  } else if (elementPos === -1) {
     socket.emit('lookup stock', symbol);
     return false;
   }
