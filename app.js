@@ -29,15 +29,12 @@ app.get('/stocks/all', function(req, res) {
 
 io.on('connection', function(socket){
   socket.on('lookup stock', function(symbol){
-    console.log('looking up ' + symbol);
     StockCtrl.retrieveStockData(symbol).then(function(dataset) {
-      console.log(dataset);
       io.emit('add stock', dataset);
     });
   });
   
   socket.on('remove stock', function(symbol){
-    console.log("Removing " + symbol)
     StockCtrl.removeStock(symbol);
     io.emit('remove stock', symbol);
   });

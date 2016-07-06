@@ -26,7 +26,6 @@ var stockCtrl = function(){
         column_index: 4
       },function(err, response) {
         if (err) { 
-          console.log(err);
           reject(Error(err)); 
         }
         var parsed = JSON.parse(response);
@@ -45,7 +44,6 @@ var stockCtrl = function(){
       
       Dataset.findOne({symbol: symbol}).remove(function(err, results) {
         if (err) { throw err };
-        console.log(results);
         var doc = {company: company, symbol: symbol, data: data};
         var newSet = new Dataset(doc);
         newSet.save(function(result) {
@@ -58,7 +56,7 @@ var stockCtrl = function(){
   this.removeStock = function(symbol) {
     Dataset.findOneAndRemove({ symbol: symbol }, function(err, result) {
       if (err) { throw err; }
-      console.log("Removed stock: " + JSON.stringify(result));
+      console.log("Removed stock successfully");
     });
   };
 
