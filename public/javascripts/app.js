@@ -18,6 +18,10 @@ $(document).ready(function() {
     });
     drawChart(stockData); 
   });
+  
+  $(".alert-danger").fadeTo(2000, 500).slideUp(500, function(){
+    $(".alert-danger").alert('close');
+  });
 });
 
 $('body').on('click', '.remove', function(e) {
@@ -32,7 +36,10 @@ $('form').submit(function(){
   var symbol = $('#symbol').val().toUpperCase();
   var elementPos = stockData.map(function(x) { return x.name; }).indexOf(symbol);
   if (elementPos !== -1) {
-    $('#errors').append('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + symbol + ' is already displayed. Try adding a different stock, or removing this one first.</div>');
+    $('#errors').append('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close" id="' + symbol +'error"><span aria-hidden="true">&times;</span></button>' + symbol + ' is already displayed. Try adding a different stock, or removing this one first.</div>');
+    $('#' + symbol + 'error').fadeTo(2000, 500).slideUp(500, function(){
+      $('#' + symbol + 'error').alert('close');
+    });
     return false;
   } else if (elementPos === -1) {
     socket.emit('lookup stock', symbol);
@@ -42,7 +49,10 @@ $('form').submit(function(){
 
 socket.on('add stock', function(dataset){
   if (dataset.quandl_error) {
-    $('#errors').append('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>The symbol entered is either not a valid stock symbol, or is not included in our data source. Try another stock symbol.</div>');
+    $('#errors').append('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close" id="quandlerror"><span aria-hidden="true">&times;</span></button>The symbol entered is either not a valid stock symbol, or is not included in our data source. Try another stock symbol.</div>');
+    $('#quandlerror').fadeTo(2000, 500).slideUp(500, function(){
+      $('#quandlerror').alert('close');
+    });
   } else {
     var company = dataset.dataset;
     company.company = company.name;
