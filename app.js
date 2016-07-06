@@ -10,18 +10,11 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 var path = require('path');
-// var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
 var stockCtrl = require('./controllers/stock.js');
 var StockCtrl = new stockCtrl();
 
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
@@ -50,7 +43,7 @@ io.on('connection', function(socket){
   });
 });
 
-port = process.env.PORT || 8080;
+var port = process.env.PORT || 8080;
 
 var server = http.listen(port, function(){  
   console.log('listening on *:' + port);

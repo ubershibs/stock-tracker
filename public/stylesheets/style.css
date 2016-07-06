@@ -4,6 +4,8 @@ body {
   color: #fff;
   width: 100%;
   height: 100%;
+  overflow-y: hidden;
+  box-sizing: margin;
 }
 
 h1 {
@@ -12,11 +14,20 @@ h1 {
 }
 
 .small {
+  margin: 5px;
   color: white;
   display: inline-block;
 }
 
+#chart {
+  margin: 5px;
+  width: 100%;
+  height: 400px;
+  background: white;
+}
+
 .notice {
+  margin: 5px;
   color: white;
   text-align: center;
   width: 100%;
@@ -24,7 +35,7 @@ h1 {
 }
 
 .errors {
-  margin-left: 5px;  
+  margin: 5px;  
 }
 
 a {
@@ -43,10 +54,10 @@ a {
 }
 
 .company {
+  margin: 5px;
   min-width: 140px;
   background-color: white;
   width: auto;
-  margin: 5px;
   padding: 10px;
   background: #fff;
   color: #4d4d4d;
@@ -54,6 +65,7 @@ a {
   position: relative;
   border-left-width: 10px;
   border-left-style: solid;
+  max-width: 100%;
 }
 
 h2 {
@@ -100,22 +112,15 @@ form {
   height: 75px;
   color: #4d4d4d;
   background-color: white;
-  margin: 5px;
   padding: 10px;
   vertical-align: center;
+  margin: 5px;
 }
 
 #symbol {
   display: inline-block;
   position: relative;
   max-width: 100px;
-}
-
-#chart {
-  width: 100%;
-  height: 300px;
-  background: white;
-  margin: 5px;
 }
 
 .color0 {
