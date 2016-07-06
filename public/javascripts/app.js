@@ -18,7 +18,6 @@ $(document).ready(function() {
     });
     drawChart(stockData); 
   });
-
 });
 
 $('body').on('click', '.remove', function(e) {
@@ -29,10 +28,11 @@ $('body').on('click', '.remove', function(e) {
 });
   
 $('form').submit(function(){
-  var symbol = $('#symbol').val();
+  $('#errors').text('');
+  var symbol = $('#symbol').val().toUpperCase();
   var elementPos = stockData.map(function(x) { return x.name; }).indexOf(symbol);
   if (elementPos !== -1) {
-    alert(symbol + 'is already displayed. Try adding a different stock, or removing this one first');
+    $('#errors').append('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + symbol + ' is already displayed. Try adding a different stock, or removing this one first.</div>');
   } else {
     socket.emit('lookup stock', symbol);
     return false;
@@ -40,14 +40,18 @@ $('form').submit(function(){
 });
 
 socket.on('add stock', function(dataset){
-  var company = dataset.dataset;
-  company.company = company.name;
-  company.symbol = company.dataset_code;
-  addToLocalData(company);
-  company = stockData[stockData.length - 1];
-  $('.flex-container').append($('<div class="flex-item company ' + company.colorCode + '">').attr('id', company.name).html('<h2>' + company.name + '</h2><span class="company-name">' + company.company + '</span>'));
-  $('#' + company.name).append('<a href="#" class="remove"><i class="glyphicon glyphicon-trash"></i></a>');
-  drawChart(stockData);
+  if (dataset.quandl_error) {
+    $('#errors').append('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>The symbol entered is either not a valid stock symbol, or is not included in our data source. Try another stock symbol.</div>');
+  } else {
+    var company = dataset.dataset;
+    company.company = company.name;
+    company.symbol = company.dataset_code;
+    addToLocalData(company);
+    company = stockData[stockData.length - 1];
+    $('.flex-container').append($('<div class="flex-item company ' + company.colorCode + '">').attr('id', company.name).html('<h2>' + company.name + '</h2><span class="company-name">' + company.company + '</span>'));
+    $('#' + company.name).append('<a href="#" class="remove"><i class="glyphicon glyphicon-trash"></i></a>');
+    drawChart(stockData);
+  }
 });
 
 socket.on('remove stock', function(symbol) {
@@ -65,7 +69,6 @@ socket.on('remove stock', function(symbol) {
 var addToLocalData = function(company) {
   var inserter = {};
   inserter.name = company.symbol;
-  console.log(JSON.stringify(company))
   inserter.company = convertedName(company.company);
   inserter.data = convertedData(company.data);
   inserter.tooltip = {
@@ -101,9 +104,6 @@ var refreshColors = function(stock) {
 
 var drawChart = function (stockData) { 
   $('#chart').highcharts('StockChart', {
-    rangeSelector: {
-      selected: 1
-    },
     series: stockData
   });
 };
