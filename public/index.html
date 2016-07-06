@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>  
+  <head>
+    <title>Stock Tracker</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="stylesheets/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-lg-12">
+        <h1>Stock Tracker</h1>
+        <p class="small">Code by <a href="http://lukewalker.org" target="_blank">Luke Walker</a>. Powered by <a href="https://www.quandl.com/" targe="_blank">Quandl</a> data and <a href="http://www.highcharts.com/" target="_blank">Highcharts</a>.</p>
+        <!-- chart element here -->
+        <div id='chart'>
+          
+        </div>
+        <p class="notice">The chart is updaated each time any user adds or removes a stock.</p>
+        <div class="flex-container">
+          <!-- List of companies -->
+          
+          <!-- Add a new company -->
+          <form name="addCompany" class="flex-item">
+            <p>Add a company:</p>
+            <input type="text" id="symbol" autofocus placeholder="Stock symbol" />
+            <input type="submit" id="Lookup" />
+          </form>
+        </div><!-- /col-md-12 -->
+      </div><!-- /col-md-8 col-md-offset-2 -->
+    </div><!-- /container -->  
+    <div class="data"></div>
+    
+    <!-- Scripts here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="/javascripts/app.js"></script>
+  </body>
+</html>

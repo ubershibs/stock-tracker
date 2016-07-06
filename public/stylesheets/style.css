@@ -1,8 +1,146 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #4D4D4D;
+  color: #fff;
+  width: 100%;
+  height: 100%;
 }
 
+h1 {
+  margin: 5px;
+  display: inline-block;
+}
+
+.small {
+  color: white;
+  display: inline-block;
+}
+
+.notice {
+  color: white;
+  text-align: center;
+  width: 100%;
+  
+}
 a {
   color: #00B7FF;
+}
+
+.remove {
+  color: #4d4d4d;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+#submit {
+  color: #4D4D4D;
+}
+
+.company {
+  min-width: 140px;
+  background-color: white;
+  width: auto;
+  margin: 5px;
+  padding: 10px;
+  background: #fff;
+  color: #4d4d4d;
+  height: 75px;
+  position: relative;
+  border-left-width: 10px;
+  border-left-style: solid;
+}
+
+h2 {
+  margin: 0;
+}
+
+.flex-container {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row-reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-flex-wrap: wrap;
+       -msflex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-justify-content: flex-end;
+            -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-align-content: stretch;
+     -ms-flex-line-pack: stretch;
+          align-content: stretch;
+  -webkit-align-items: flex-start;
+       -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.flex-item {
+  -webkit-flex: 0 1 auto;
+      -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
+   -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+           align-self: auto;
+}
+
+.company-name {
+ position: relative;
+ display: block;
+ color: #4d4d4d;
+}
+
+form {
+  height: 75px;
+  color: #4d4d4d;
+  background-color: white;
+  margin: 5px;
+  padding: 10px;
+  vertical-align: center;
+}
+
+#symbol {
+  display: inline-block;
+  position: relative;
+  max-width: 100px;
+}
+
+#chart {
+  width: 100%;
+  height: 300px;
+  background: white;
+  margin: 5px;
+}
+
+.color0 {
+  border-left-color: #5DA5DA;
+}
+
+.color1 {
+  border-left-color: #FAA43A;
+}
+
+.color2 {
+  border-left-color: #60BD68;
+}
+
+.color3 {
+  border-left-color: #F17CB0;
+}
+
+.color4 {
+  border-left-color: #B2912F; 
+}
+
+.color5 {
+  border-left-color: #B276B2; 
+}
+
+.color6 {
+  border-left-color: #DECF3F; 
+}
+
+.color7 {
+  border-left-color: #4D4D4D;
 }
