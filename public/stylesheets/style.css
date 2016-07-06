@@ -34,8 +34,9 @@ h1 {
   
 }
 
-.errors {
-  margin: 5px;  
+#errors {
+  margin-left: 5px;
+  width: 100%;
 }
 
 a {
